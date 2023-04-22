@@ -1,0 +1,31 @@
+<div class="main-container">
+  <button *ngIf="!editing" class="change-btn" mat-raised-button color="primary" (click)="edit()">Change</button>
+    <div class="episode-info-container" *ngIf="!editing">
+      <button mat-raised-button color="primary" (click)="previousEpisode()">-</button>
+        Season {{season}}
+        Episode {{episode}}
+      <button mat-raised-button color="primary" (click)="nextEpisode()">+</button>
+    </div>
+    <mat-card *ngIf="editing" class="edit-card">
+        <mat-card-header>
+          <mat-card-title>Change Episode</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="contents">
+            <form class="example-form" >
+                <mat-form-field class="example-full-width">
+                  <mat-label>Season</mat-label>
+                  <input matInput [(ngModel)]="newSeason" name="a">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Episode</mat-label>
+                    <input matInput [(ngModel)]="newEpisode" name="b">
+                  </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="buttons">
+          <button mat-raised-button color="primary" (click)="edit()">Back</button>
+          <button mat-raised-button color="primary" (click)="changeEpisode()">Confirm</button>
+        </mat-card-actions>
+      </mat-card>
+      <iframe [src]="video_url" title="Video Player" height="80%" width="100%" allowfullscreen="true" style="display: inline-block;"></iframe>
+</div>

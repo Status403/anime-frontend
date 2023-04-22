@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment.prod';
 
 interface Info {
   _id: string
@@ -13,11 +13,12 @@ interface Info {
   providedIn: 'root'
 })
 export class OnepieceService {
-  base_url = "https://misty-kimono-jay.cyclic.app/";
+  base_url = environment.apiUrl;
+  
   constructor(private httpClient: HttpClient) { }
 
   load_episode(s: number, e: number) {
     return this.httpClient
-    .get<Info>(`https://misty-kimono-jay.cyclic.app/episode?episode=${e}&season=${s}`);
+    .get<Info>(this.base_url + `episode?episode=${e}&season=${s}`);
   }
 }
